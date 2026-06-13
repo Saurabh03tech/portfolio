@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Personal Portfolio - Saurabh Soni</title>
+
+    <script src="https://kit.fontawesome.com/2195e14f1b.js" crossorigin="anonymous"></script>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        html{
+            scroll-behavior:smooth;
+        }
+
+        body{
+            background:#050816;
+            color:white;
+            overflow-x:hidden;
+            position:relative;
+        }
+
+        /* ================= BACKGROUND ================= */
+
+        body::before{
+            content:'';
+            position:fixed;
+            width:100%;
+            height:100%;
+            top:0;
+            left:0;
+            background:
+            linear-gradient(
+                -45deg,
+                #0f172a,
+                #111827,
+                #1e3a8a,
+                #6d28d9
+            );
+
+            background-size:400% 400%;
+            animation:gradientBG 15s ease infinite;
+            z-index:-5;
+        }
+
+        @keyframes gradientBG{
+            0%{
+                background-position:0% 50%;
+            }
+            50%{
+                background-position:100% 50%;
+            }
+            100%{
+                background-position:0% 50%;
+            }
+        }
+
+        .particles{
+            position:fixed;
+            width:100%;
+            height:100%;
+            top:0;
+            left:0;
+            z-index:-4;
+
+            background-image:
+            radial-gradient(circle, rgba(255,255,255,0.18) 1px, transparent 1px);
+
+            background-size:40px 40px;
+
+            animation:particlesMove 18s linear infinite;
+        }
+
+        @keyframes particlesMove{
+            from{
+                transform:translateY(0);
+            }
+            to{
+                transform:translateY(-100px);
+            }
+        }
+
+        /* ================= GENERAL ================= */
+
+        .container{
+            padding:10px 10%;
+        }
+
+        .subtitle,
+        .sub-title{
+            font-size:45px;
+            font-weight:700;
+            margin-bottom:25px;
+        }
+
+        .row{
+            display:flex;
+            justify-content:space-between;
+            flex-wrap:wrap;
+            gap:40px;
+        }
+
+        section{
+            padding:80px 0;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        nav{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            flex-wrap:wrap;
+            padding:20px 0;
+        }
+
+        .logo{
+            width:120px;
+            border-radius:50%;
+            border:3px solid rgba(255,255,255,0.2);
+            box-shadow:0 0 20px rgba(0,229,255,0.5);
+        }
+
+        nav ul li{
+            display:inline-block;
+            list-style:none;
+            margin:10px 20px;
+        }
+
+        nav ul li a{
+            color:white;
+            text-decoration:none;
+            font-size:18px;
+            position:relative;
+            transition:0.4s;
+        }
+
+        nav ul li a:hover{
+            color:#00e5ff;
+        }
+
+        nav ul li a::after{
+            content:'';
+            width:0;
+            height:3px;
+            background:#00e5ff;
+            position:absolute;
+            left:0;
+            bottom:-6px;
+            transition:0.5s;
+        }
+
+        nav ul li a:hover::after{
+            width:100%;
+        }
+
+        /* ================= HEADER ================= */
+
+        #header{
+            width:100%;
+            height:100vh;
+            position:relative;
+        }
+
+        .header-text{
+            margin-top:15%;
+            animation:fadeUp 1s ease;
+        }
+
+        .typing{
+            font-size:30px;
+            color:#00e5ff;
+            font-weight:500;
+            height:40px;
+        }
+
+        .header-text h1{
+            font-size:65px;
+            margin-top:20px;
+            line-height:1.3;
+        }
+
+        .header-text h1 span{
+            color:#00e5ff;
+        }
+
+        .hero-buttons{
+            margin-top:35px;
+        }
+
+        /* ================= BUTTONS ================= */
+
+        .btn{
+            display:inline-block;
+            padding:14px 35px;
+            border-radius:50px;
+            text-decoration:none;
+            color:white;
+            background:linear-gradient(45deg,#00e5ff,#7c3aed);
+            border:none;
+            cursor:pointer;
+            transition:0.4s;
+            font-weight:600;
+            margin-right:15px;
+        }
+
+        .btn:hover{
+            transform:translateY(-5px) scale(1.05);
+            box-shadow:0 0 25px #00e5ff;
+        }
+
+        /* ================= GLASS EFFECT ================= */
+
+        .glass-card{
+            background:rgba(255,255,255,0.08);
+            border:1px solid rgba(255,255,255,0.1);
+            backdrop-filter:blur(14px);
+            border-radius:20px;
+            padding:30px;
+            box-shadow:0 8px 32px rgba(0,0,0,0.3);
+            transition:0.4s;
+        }
+
+        .glass-card:hover{
+            transform:translateY(-10px);
+        }
+
+        /* ================= ABOUT ================= */
+
+        #about{
+            padding:100px 0;
+        }
+
+        .About-col-1{
+            flex-basis:35%;
+        }
+
+        .About-col-2{
+            flex-basis:60%;
+        }
+
+        .About-col-1 img{
+            width:100%;
+            border-radius:20px;
+            transition:0.5s;
+            box-shadow:0 0 25px rgba(0,229,255,0.3);
+        }
+
+        .About-col-1 img:hover{
+            transform:scale(1.04);
+        }
+
+        .About-col-2 p{
+            line-height:1.8;
+            color:#d1d5db;
+        }
+
+        /* ================= TABS ================= */
+
+        .tab-titles{
+            display:flex;
+            margin:30px 0 40px;
+            flex-wrap:wrap;
+        }
+
+        .tab-links{
+            margin-right:40px;
+            font-size:18px;
+            font-weight:500;
+            cursor:pointer;
+            position:relative;
+        }
+
+        .tab-links::after{
+            content:'';
+            width:0;
+            height:3px;
+            background:#00e5ff;
+            position:absolute;
+            left:0;
+            bottom:-8px;
+            transition:0.5s;
+        }
+
+        .tab-links.active-link::after{
+            width:100%;
+        }
+
+        .tab-contents{
+            display:none;
+        }
+
+        .tab-contents.active-tab{
+            display:block;
+        }
+
+        .tab-contents ul li,
+        .tab-contents ol li{
+            margin:15px 0;
+            color:#e5e7eb;
+            line-height:1.7;
+        }
+
+        /* ================= COURSEWORK ================= */
+
+        #coursework{
+            padding:80px 0;
+        }
+
+        .coursework-text ul{
+            margin-top:20px;
+        }
+
+        .coursework-text ul li{
+            margin:15px 0;
+            font-size:18px;
+            color:#e5e7eb;
+        }
+
+        /* ================= CONTACT ================= */
+
+        #contact{
+            padding:80px 0;
+        }
+
+        .contact-left{
+            flex-basis:35%;
+        }
+
+        .contact-right{
+            flex-basis:60%;
+        }
+
+        .contact-left p{
+            margin-top:20px;
+            font-size:17px;
+        }
+
+        .contact-left p i{
+            color:#00e5ff;
+            margin-right:12px;
+        }
+
+        .social-icons{
+            margin-top:30px;
+        }
+
+        .social-icons a{
+            text-decoration:none;
+            font-size:28px;
+            margin-right:20px;
+            color:white;
+            display:inline-block;
+            transition:0.4s;
+        }
+
+        .social-icons a:hover{
+            color:#00e5ff;
+            transform:translateY(-6px) scale(1.2);
+        }
+
+        form input,
+        form textarea{
+            width:100%;
+            border:0;
+            outline:none;
+            background:#111827;
+            padding:15px;
+            margin:15px 0;
+            color:white;
+            font-size:16px;
+            border-radius:12px;
+        }
+
+        form textarea{
+            resize:none;
+        }
+
+        .copyright{
+            width:100%;
+            text-align:center;
+            padding:25px 0;
+            margin-top:50px;
+            background:rgba(255,255,255,0.05);
+            font-weight:400;
+        }
+
+        /* ================= ANIMATIONS ================= */
+
+        @keyframes fadeUp{
+            from{
+                opacity:0;
+                transform:translateY(50px);
+            }
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+        }
+
+        /* ================= MOBILE ================= */
+
+        nav .fa-solid{
+            display:none;
+        }
+
+        @media only screen and (max-width:768px){
+
+            .container{
+                padding:10px 7%;
+            }
+
+            .header-text{
+                margin-top:40%;
+            }
+
+            .header-text h1{
+                font-size:38px;
+            }
+
+            .typing{
+                font-size:24px;
+            }
+
+            .subtitle,
+            .sub-title{
+                font-size:34px;
+            }
+
+            nav .fa-solid{
+                display:block;
+                font-size:25px;
+            }
+
+            nav ul{
+                background:#111827;
+                position:fixed;
+                top:0;
+                right:-220px;
+                width:220px;
+                height:100vh;
+                padding-top:50px;
+                z-index:100;
+                transition:0.5s;
+            }
+
+            nav ul li{
+                display:block;
+                margin:25px;
+            }
+
+            nav ul .fa-solid{
+                position:absolute;
+                top:25px;
+                left:25px;
+                cursor:pointer;
+            }
+
+            .About-col-1,
+            .About-col-2,
+            .contact-left,
+            .contact-right{
+                flex-basis:100%;
+            }
+
+            .tab-links{
+                margin-right:20px;
+                margin-bottom:20px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- PARTICLES -->
+    <div class="particles"></div>
+
+    <!-- HEADER -->
+
+    <div id="header">
+
+        <div class="container">
+
+            <nav>
+
+                <img src="saur22.png" class="logo" alt="Logo">
+
+                <ul id="sidemenu">
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#coursework">Coursework</a></li>
+                    <li><a href="#contact">Contact</a></li>
+
+                    <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
+                </ul>
+
+                <i class="fa-solid fa-bars" onclick="openmenu()"></i>
+
+            </nav>
+
+            <div class="header-text">
+
+                <p class="typing"></p>
+
+                <h1>
+                    Hi, I'm <span>Saurabh</span><br>
+                    from University of Hyderabad.
+                </h1>
+
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn">Hire Me</a>
+                    <a href="Saurabh_s_Resume.pdf" download class="btn">
+                        Download CV
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ABOUT -->
+
+    <div id="about">
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="About-col-1">
+
+                    <img src="user.webp" alt="Profile">
+
+                </div>
+
+                <div class="About-col-2 glass-card">
+
+                    <h1 class="subtitle">About Me</h1>
+
+                    <p>
+                        An enthusiastic and detail-oriented MCA student with a strong
+                        foundation in computer applications and software development.
+                        Proficient in Java, Python, C, Web Development, Database
+                        Management and Software Engineering. Passionate about building
+                        impactful digital solutions and continuously learning modern
+                        technologies.
+                    </p>
+
+                    <div class="tab-titles">
+
+                        <p class="tab-links active-link"
+                           onclick="opentab('technical-skills')">
+                           Technical Skills
+                        </p>
+
+                        <p class="tab-links"
+                           onclick="opentab('achievements')">
+                           Achievements
+                        </p>
+
+                        <p class="tab-links"
+                           onclick="opentab('education')">
+                           Education
+                        </p>
+
+                    </div>
+
+                    <div class="tab-contents active-tab"
+                         id="technical-skills">
+
+                        <ul>
+                            <li><b>Languages:</b> Python, Java, C, JavaScript, PHP, SQL</li>
+
+                            <li><b>Frontend:</b> HTML, CSS, JavaScript</li>
+
+                            <li><b>Developer Tools:</b> VS Code, Eclipse, MySQL Workbench, GitHub</li>
+
+                            <li><b>Technologies:</b> Linux, Web Development, OOP</li>
+
+                            <li><b>Soft Skills:</b> Communication, Quick Learner, Self Motivation</li>
+                        </ul>
+
+                    </div>
+
+                    <div class="tab-contents"
+                         id="achievements">
+
+                        <ol>
+                            <li>Secured AIR 684 in NIMCET among 40,000 participants.</li>
+
+                            <li>Awarded MMVY Scholarship by Government of Madhya Pradesh.</li>
+
+                            <li>Built multiple web development projects and portfolio websites.</li>
+                        </ol>
+
+                    </div>
+
+                    <div class="tab-contents"
+                         id="education">
+
+                        <ul>
+                            <li>
+                                <b>University of Hyderabad</b><br>
+                                MCA (2024 - Present)
+                            </li>
+
+                            <li>
+                                <b>APS University</b><br>
+                                B.Sc. (2020 - 2023)
+                            </li>
+
+                            <li>
+                                <b>Saraswati Hr Sec School</b><br>
+                                12th - 85.40% | 10th - 92%
+                            </li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- COURSEWORK -->
+
+    <div id="coursework">
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="About-col-2 glass-card coursework-text">
+
+                    <h1 class="subtitle">Relevant Coursework</h1>
+
+                    <ul>
+                        <li>Data Structures & Algorithms</li>
+                        <li>Computer Architecture</li>
+                        <li>Operating Systems</li>
+                        <li>Database Management Systems</li>
+                        <li>Object Oriented Programming</li>
+                        <li>Web Development</li>
+                        <li>Cloud Computing</li>
+                    </ul>
+
+                </div>
+
+                <div class="About-col-1">
+
+                    <img src="rele.jpeg" alt="Coursework">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- CONTACT -->
+
+    <div id="contact">
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="contact-left glass-card">
+
+                    <h1 class="sub-title">Contact Me</h1>
+
+                    <p>
+                        <i class="fa-regular fa-envelope"></i>
+                        saurabhsoniphe@gmail.com
+                    </p>
+
+                    <p>
+                        <i class="fa-solid fa-phone"></i>
+                        +91-7898303747
+                    </p>
+
+                    <div class="social-icons">
+
+                        <a href="mailto:saurabhsoniphe@gmail.com">
+                            <i class="fa-solid fa-envelope"></i>
+                        </a>
+
+                        <a href="https://linkedin.com/in/saurabh-soni-90a718273">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </a>
+
+                        <a href="https://github.com/Saurabh03tech">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+
+                        <a href="https://www.hackerrank.com/profile/saurabhsoniphe">
+                            <i class="fa-brands fa-hackerrank"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <div class="contact-right glass-card">
+
+                    <form>
+
+                        <input
+                            type="text"
+                            placeholder="Enter your name..."
+                            required
+                        >
+
+                        <input
+                            type="email"
+                            placeholder="Enter your email..."
+                            required
+                        >
+
+                        <textarea
+                            rows="6"
+                            placeholder="Enter your message..."
+                        ></textarea>
+
+                        <button type="submit" class="btn">
+                            Send Message
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            <p>© 2026 Saurabh Soni | All Rights Reserved</p>
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        // ================= TABS =================
+
+        var tablinks = document.getElementsByClassName("tab-links");
+        var tabcontents = document.getElementsByClassName("tab-contents");
+
+        function opentab(tabname){
+
+            for(tablink of tablinks){
+                tablink.classList.remove("active-link");
+            }
+
+            for(tabcontent of tabcontents){
+                tabcontent.classList.remove("active-tab");
+            }
+
+            event.currentTarget.classList.add("active-link");
+
+            document.getElementById(tabname).classList.add("active-tab");
+        }
+
+        // ================= MOBILE MENU =================
+
+        var sidemenu = document.getElementById("sidemenu");
+
+        function openmenu(){
+            sidemenu.style.right = "0";
+        }
+
+        function closemenu(){
+            sidemenu.style.right = "-220px";
+        }
+
+        // ================= TYPING EFFECT =================
+
+        const roles = [
+            "Software Engineer",
+            "Java Developer",
+            "Full Stack Developer",
+            "MCA Student"
+        ];
+
+        let roleIndex = 0;
+        let charIndex = 0;
+
+        const typingElement = document.querySelector(".typing");
+
+        function typeEffect(){
+
+            if(charIndex < roles[roleIndex].length){
+
+                typingElement.innerHTML +=
+                    roles[roleIndex].charAt(charIndex);
+
+                charIndex++;
+
+                setTimeout(typeEffect,100);
+            }
+            else{
+                setTimeout(eraseEffect,1500);
+            }
+        }
+
+        function eraseEffect(){
+
+            if(charIndex > 0){
+
+                typingElement.innerHTML =
+                    roles[roleIndex].substring(0,charIndex - 1);
+
+                charIndex--;
+
+                setTimeout(eraseEffect,50);
+            }
+            else{
+
+                roleIndex = (roleIndex + 1) % roles.length;
+
+                setTimeout(typeEffect,300);
+            }
+        }
+
+        typeEffect();
+
+    </script>
+
+</body>
+</html>
